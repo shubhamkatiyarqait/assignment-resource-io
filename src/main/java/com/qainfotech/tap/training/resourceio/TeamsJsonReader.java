@@ -26,6 +26,8 @@ public class TeamsJsonReader{
 	List<Individual> listInActiveIndividuals;
 	List<Individual> listActiveIndividuals;
 	JSONObject jsonObj;
+	ClassLoader classLoader = getClass().getClassLoader();
+	File file = new File(classLoader.getResource("db.json").getFile());
 
 	/**
 	 * get a list of individual objects from db json file
@@ -40,8 +42,7 @@ public class TeamsJsonReader{
 		JSONObject jsonObject = null;
 		try {
 			parser = new JSONParser();
-			Object obj = parser.parse(new FileReader(new File(
-					"D:\\assignment-resource-io\\src\\test\\resources\\db.json")));
+			Object obj = parser.parse(new FileReader(file));
 			jsonObject = (JSONObject) obj;
 
 		} catch (Exception e) {
@@ -186,7 +187,7 @@ public class TeamsJsonReader{
 		try {			
 			
 			parser = new JSONParser();
-			Object obj = parser.parse(new FileReader(new File("D:\\assignment-resource-io\\src\\test\\resources\\db.json")));
+			Object obj = parser.parse(new FileReader(file));
 			jsonObj = (JSONObject) obj;
 			teamList=new ArrayList<>();
 			Team team=null;
